@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: kafka-two-consumers
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id:
+        id1: group_id1
+        id2: group_id2
+      topic:
+        name: user-log
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
